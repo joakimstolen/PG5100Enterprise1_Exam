@@ -3,6 +3,7 @@ package com.example.exam.selenium;
 import com.example.exam.Application;
 import com.example.exam.selenium.po.IndexPO;
 import com.example.exam.selenium.po.SignUpPO;
+import com.example.exam.selenium.po.UserPO;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,8 +18,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.junit.Assert.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
@@ -109,5 +110,21 @@ public class SeleniumLocalIT {
         assertFalse(home.getDriver().getPageSource().contains(userID));
     }
 
+
+    @Test
+    public void testDisplayUserInfo() {
+        //Try to access user info page
+        //As we are not logged in it should fail
+        UserPO userPO = home.getUserInfo();
+        assertNull(userPO);
+        String userID = getUniqueId();
+        home = createNewUser(userID, "123123");
+        userPO = home.getUserInfo();
+        assertNotNull(userPO);
+        assertTrue(userPO.getUserName().contains(userID));
+        userPO.doLogout();
+        userPO = home.getUserInfo();
+        assertNull(userPO);
+    }
 
 }
