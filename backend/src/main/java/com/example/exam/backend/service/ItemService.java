@@ -1,13 +1,16 @@
 package com.example.exam.backend.service;
 
 import com.example.exam.backend.entity.Item;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Service
 @Transactional
@@ -60,6 +63,34 @@ public class ItemService {
         }
 
         return item;
+    }
+
+
+    public List<Item> getRandomItems(int amount, boolean withCopies){
+        List<Item> items = new ArrayList<>(amount);
+        while (items.size() < amount){
+            items.add(getRandomItem(withCopies));
+        }
+
+        return items;
+    }
+
+
+    public Item getRandomItem(boolean withCopies){
+
+        Random random = new Random();
+        int rnd = random.nextInt(6);
+
+        TypedQuery<Item> query = entityManager.createQuery("SELECT item FROM Item item", Item.class).setFirstResult(rnd).setMaxResults(1);
+
+        Item item = query.getSingleResult();
+
+        if (withCopies){
+            Hibernate.initialize(item.getAllItemBuyers());
+        }
+
+        return item;
+
     }
 
 

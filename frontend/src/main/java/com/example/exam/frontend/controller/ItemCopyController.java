@@ -6,6 +6,7 @@ import com.example.exam.backend.entity.Copy;
 import com.example.exam.backend.entity.Item;
 import com.example.exam.backend.service.CopyService;
 import com.example.exam.backend.service.ItemService;
+import com.example.exam.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.enterprise.context.SessionScoped;
@@ -24,11 +25,18 @@ public class ItemCopyController implements Serializable {
     @Autowired
     private CopyService copyService;
 
+    @Autowired
+    private UserService userService;
+
     private Long itemId;
 
     public List<Item> getItems(int numberOfItems){
         return itemService.getAllItems(true).stream().limit(numberOfItems).collect(Collectors.toList());
     };
+
+    public List<Item> getRandomItems(int numberOfItems){
+        return itemService.getRandomItems(numberOfItems, true).stream().limit(numberOfItems).collect(Collectors.toList());
+    }
 
     public String getItemRedirectionLink(Long itemId){
         this.itemId = itemId;
@@ -41,6 +49,7 @@ public class ItemCopyController implements Serializable {
     }
 
     public String makeCopy(String userId){
+
         if (isNotCopied(itemId, userId)){
             copyService.newCopy(itemId, userId);
             return "details?itemId=" + itemId + "&isCopied=true&faces-redirect=true";

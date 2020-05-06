@@ -19,19 +19,33 @@
         <c:set var="isCopied" value="#{param['isCopied']}"/>
 
 
+        <sec:authenticated>
+            <h:form prependId="false" id="bookingForm"
+                    rendered="#{itemCopyController.isNotCopied(item.id, userInfoController.userName)}">
+                <h:commandButton value="Open Lootbox"
+                                 action="#{itemCopyController.makeCopy(userInfoController.userName)}"
+                                 id="bookingBtn"/>
+            </h:form>
+        </sec:authenticated>
+
+        <c:if test="#{!empty isCopied}">
+            <c:choose>
+                <c:when test="#{isCopied.equals('true')}">
+                    <p>Lootbox opening was sucesfull!</p>
+                </c:when>
+                <c:otherwise>
+                    <p>Lootbox opening failed!</p>
+                </c:otherwise>
+            </c:choose>
+        </c:if>
+
         <c:choose>
             <c:when test="#{empty param['itemId']}">
                 <p class="alert">No id, cannot display data</p>
             </c:when>
             <c:otherwise>
                 <div class="descriptionData">
-                    <h:outputLabel>Pokemon: #{item.name}</h:outputLabel>
-                    <br/>
-                    <h:outputLabel>Description: #{item.description}</h:outputLabel>
-                    <br/>
-                    <h:outputLabel>Type: #{item.type}</h:outputLabel>
-                    <br/>
-                    <h:outputLabel>Price #{item.price}</h:outputLabel>
+
 
                 </div>
             </c:otherwise>
