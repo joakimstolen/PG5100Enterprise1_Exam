@@ -23,6 +23,7 @@ public class Users {
     @Size(max = 128)
     private String lastName;
 
+    @NotNull
     @NotBlank
     private String hashedPassword;
 

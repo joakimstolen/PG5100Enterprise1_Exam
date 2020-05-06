@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 
 import javax.enterprise.context.RequestScoped;
+import javax.validation.constraints.NotBlank;
 
 @RequestScoped
 @Controller
@@ -28,6 +29,7 @@ public class SignUpController {
 
     private String username;
 
+    @NotBlank
     private String password;
 
     public String signUpUser() {

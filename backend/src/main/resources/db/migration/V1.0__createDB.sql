@@ -28,7 +28,7 @@ create table users
     userid varchar(255) not null,
     email varchar(255),
     enabled boolean not null,
-    hashed_password varchar(255),
+    hashed_password varchar(255) not null,
     last_name varchar(128),
     first_name varchar(128),
     currency bigint not null,
