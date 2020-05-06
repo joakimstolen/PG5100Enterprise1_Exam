@@ -1,5 +1,6 @@
 package com.example.exam.backend.service;
 
+import com.example.exam.backend.entity.Item;
 import com.example.exam.backend.entity.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -9,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.validation.constraints.NotBlank;
 import java.util.Collections;
+import java.util.List;
 
 @Service
 @Transactional
@@ -50,6 +52,8 @@ public class UserService {
         users.getLootBoxesList().size();
         return users;
     }
+
+
 
 
 }

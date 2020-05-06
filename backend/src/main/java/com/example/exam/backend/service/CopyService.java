@@ -44,14 +44,15 @@ public class CopyService {
             throw new IllegalArgumentException("User not found");
         }
 
+
         Copy copy = new Copy();
         copy.setPurchasedBy(users);
         copy.setItemInformation(item);
         users.getLootBoxesList().add(item);
         entityManager.persist(copy);
-
         return copy.getId();
     }
+
 
 
     public List<Copy> filterCopyByUser(String userId){

@@ -78,8 +78,11 @@ public class ItemService {
 
     public Item getRandomItem(boolean withCopies){
 
+        TypedQuery<Long> sizeQuery = entityManager.createQuery("SELECT COUNT(item) FROM Item item", Long.class);
+        long size = sizeQuery.getSingleResult();
+
         Random random = new Random();
-        int rnd = random.nextInt(6);
+        int rnd = random.nextInt((int)size);
 
         TypedQuery<Item> query = entityManager.createQuery("SELECT item FROM Item item", Item.class).setFirstResult(rnd).setMaxResults(1);
 

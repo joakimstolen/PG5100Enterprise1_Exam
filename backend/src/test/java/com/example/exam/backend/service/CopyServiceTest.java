@@ -30,7 +30,7 @@ public class CopyServiceTest extends ServiceTestBase{
     private UserService userService;
 
     @Test
-    public void testCreatePurchase(){
+    public void testCreateCopy(){
         userService.createUser("test", "test", "test", "123", "test@mail.com", "user", 100L);
         Long itemId = itemService.createItem("itemTest", "itemTest", "itemTest", 50L);
         Long copyId = copyService.newCopy(itemId, "test");

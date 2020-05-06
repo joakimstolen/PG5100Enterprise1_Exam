@@ -32,6 +32,7 @@
             <c:choose>
                 <c:when test="#{isCopied.equals('true')}">
                     <p>Lootbox opening was sucesfull!</p>
+                    <h:button value="See my Loot" action="user"/>
                 </c:when>
                 <c:otherwise>
                     <p>Lootbox opening failed!</p>
@@ -50,6 +51,7 @@
                 </div>
             </c:otherwise>
         </c:choose>
+
 
 
 

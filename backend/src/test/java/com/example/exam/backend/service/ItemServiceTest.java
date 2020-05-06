@@ -32,6 +32,17 @@ public class ItemServiceTest extends ServiceTestBase{
         assertNotNull(item);
     }
 
+    @Test
+    public void testGetRandomItem(){
+        Long itemId = itemService.createItem("test", "test", "test", 100L);
+        Long itemId2 = itemService.createItem("test2", "test2", "test2", 300L);
+        assertNotNull(itemId);
+        assertNotNull(itemId2);
+
+        List<Item> randomItems = itemService.getRandomItems(1,false);
+        assertNotNull(randomItems);
+    }
+
 
     @Test
     public void testNoItem(){
