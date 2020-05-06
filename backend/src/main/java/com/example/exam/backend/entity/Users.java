@@ -11,6 +11,8 @@ import java.util.Set;
 @Entity
 public class Users {
 
+    public static final int MIN_PASSWORD_LENGTH = 3;
+
     @Id
     @NotBlank
     private String userID;

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:sec="http://www.springframework.org/security/tags"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xml:lang="en" lang="en">
+<ui:composition template="layout.xhtml">
+    <ui:define name="title">
+        Pokemon details
+    </ui:define>
+    <ui:define name="content">
+        <c:set var="id" value="#{param['itemId']}"/>
+        <c:set var="item" value="#{itemCopyController.getItem(id)}"/>
+        <c:set var="isCopied" value="#{param['isCopied']}"/>
+
+
+        <c:choose>
+            <c:when test="#{empty param['itemId']}">
+                <p class="alert">No id, cannot display data</p>
+            </c:when>
+            <c:otherwise>
+                <div class="descriptionData">
+                    <h:outputLabel>Pokemon: #{item.name}</h:outputLabel>
+                    <br/>
+                    <h:outputLabel>Description: #{item.description}</h:outputLabel>
+                    <br/>
+                    <h:outputLabel>Type: #{item.type}</h:outputLabel>
+                    <br/>
+                    <h:outputLabel>Price #{item.price}</h:outputLabel>
+
+                </div>
+            </c:otherwise>
+        </c:choose>
+
+
+
+    </ui:define>
+
+</ui:composition>
+
+
+</html>
