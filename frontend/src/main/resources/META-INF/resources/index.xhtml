@@ -54,28 +54,7 @@
                 </h:dataTable>
 
 
-                <sec:authenticated>
 
-
-                <h:dataTable value="#{listOfLootboxes}" var="item" border="1" id="lootBoxTable">
-                    <h:column>
-                        <f:facet name="header">Lootbox</f:facet>
-                        <h:outputText value="Lootbox"/>
-                    </h:column>
-
-                    <h:column>
-                        <f:facet name="header">Open Lootbox</f:facet>
-                        <h:form prependId="false" id="detailsForm1">
-                            <h:commandButton value="Details"
-                                             styleClass="btn btn-outline-info"
-                                             action="#{itemCopyController.getItemRedirectionLink(item.id)}"
-                                             id="detailsBtn_#{item.id}"/>
-
-                        </h:form>
-                    </h:column>
-
-                </h:dataTable>
-                </sec:authenticated>
             </c:otherwise>
 
         </c:choose>
