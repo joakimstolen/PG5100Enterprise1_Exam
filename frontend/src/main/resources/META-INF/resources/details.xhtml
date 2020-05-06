@@ -20,8 +20,7 @@
 
 
         <sec:authenticated>
-            <h:form prependId="false" id="bookingForm"
-                    rendered="#{itemCopyController.isNotCopied(item.id, userInfoController.userName)}">
+            <h:form prependId="false" id="bookingForm">
                 <h:commandButton value="Open Lootbox"
                                  action="#{itemCopyController.makeCopy(userInfoController.userName)}"
                                  id="bookingBtn"/>
@@ -32,7 +31,8 @@
             <c:choose>
                 <c:when test="#{isCopied.equals('true')}">
                     <p>Lootbox opening was sucesfull!</p>
-                    <h:button value="See my Loot" action="user"/>
+                    <p>You got: #{item.name}</p>
+                    <h:link class="btn" id="lootBtn" outcome="user" value="See all my loot"/> <br/>
                 </c:when>
                 <c:otherwise>
                     <p>Lootbox opening failed!</p>

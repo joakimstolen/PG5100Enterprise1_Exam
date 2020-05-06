@@ -6,6 +6,7 @@ create table copy
     id bigint not null,
     purchased_by_userid varchar(255) not null,
     item_information_id bigint not null,
+    duplicates integer not null,
     primary key (id)
 );
 

@@ -31,8 +31,8 @@ public class CopyServiceTest extends ServiceTestBase{
 
     @Test
     public void testCreateCopy(){
-        userService.createUser("test", "test", "test", "123", "test@mail.com", "user", 100L);
-        Long itemId = itemService.createItem("itemTest", "itemTest", "itemTest", 50L);
+        userService.createUser("test", "test", "test", "123", "test@mail.com", "user", 200L);
+        Long itemId = itemService.createItem("itemTest", "itemTest", "itemTest", 200L);
         Long copyId = copyService.newCopy(itemId, "test");
         assertNotNull(copyId);
     }
@@ -41,9 +41,9 @@ public class CopyServiceTest extends ServiceTestBase{
     @Test
     public void testFilterCopyByUserId(){
         String userId = "test";
-        userService.createUser(userId, userId, "lastname", "123", "test@mail.com", "user", 100L);
-        Long firstItem = itemService.createItem("name1", "desc1", "type1", 1000L);
-        Long secondItem = itemService.createItem("name2", "desc2", "type2", 1400L);
+        userService.createUser(userId, userId, "lastname", "123", "test@mail.com", "user", 400L);
+        Long firstItem = itemService.createItem("name1", "desc1", "type1", 900L);
+        Long secondItem = itemService.createItem("name2", "desc2", "type2", 900L);
 
         Long firstCopy = copyService.newCopy(firstItem, userId);
         Long secondCopy = copyService.newCopy(secondItem, userId);
@@ -55,6 +55,7 @@ public class CopyServiceTest extends ServiceTestBase{
         assertEquals(2, userCopy.size());
 
     }
+
 
 
 

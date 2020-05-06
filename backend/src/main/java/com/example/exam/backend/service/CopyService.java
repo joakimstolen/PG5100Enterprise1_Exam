@@ -44,6 +44,13 @@ public class CopyService {
             throw new IllegalArgumentException("User not found");
         }
 
+        if (users.getCurrency() <= 100){
+            return null;
+        }
+
+        long cost = 200L;
+        long currency= users.getCurrency();
+        users.setCurrency(currency-cost);
 
         Copy copy = new Copy();
         copy.setPurchasedBy(users);
@@ -53,6 +60,18 @@ public class CopyService {
         return copy.getId();
     }
 
+
+    private Long millCopy(Long copyId, String userId){
+        Copy copy = entityManager.find(Copy.class, copyId);
+        Users user = entityManager.find(Users.class, userId);
+
+        if (copy == null){
+            throw new IllegalArgumentException("Copy does not exist");
+        }
+
+        long currency = user.getCurrency() + copy.getItemInformation().getPrice();
+        int duplicates = copy.ge
+    }
 
 
     public List<Copy> filterCopyByUser(String userId){

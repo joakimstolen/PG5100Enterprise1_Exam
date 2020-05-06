@@ -10,6 +10,9 @@ public class Copy {
     @GeneratedValue
     private Long id;
 
+    @NotNull
+    private int duplicates;
+
     @OneToOne
     @NotNull
     private Users purchasedBy;
@@ -40,5 +43,13 @@ public class Copy {
 
     public void setItemInformation(Item itemInformation) {
         this.itemInformation = itemInformation;
+    }
+
+    public int getDuplicates() {
+        return duplicates;
+    }
+
+    public void setDuplicates(int duplicates) {
+        this.duplicates = duplicates;
     }
 }

@@ -4,6 +4,7 @@ package com.example.exam.frontend.controller;
 
 import com.example.exam.backend.entity.Copy;
 import com.example.exam.backend.entity.Item;
+import com.example.exam.backend.entity.Users;
 import com.example.exam.backend.service.CopyService;
 import com.example.exam.backend.service.ItemService;
 import com.example.exam.backend.service.UserService;
@@ -50,7 +51,7 @@ public class ItemCopyController implements Serializable {
 
     public String makeCopy(String userId){
 
-        if (isNotCopied(itemId, userId)){
+        if (true){
             copyService.newCopy(itemId, userId);
             return "details?itemId=" + itemId + "&isCopied=true&faces-redirect=true";
         } else {
@@ -58,8 +59,4 @@ public class ItemCopyController implements Serializable {
         }
     }
 
-    public Boolean isNotCopied(Long itemId, String userId) {
-        List<Copy> allPurchase = copyService.filterCopyByUser(userId);
-        return allPurchase.stream().filter(p -> p.getItemInformation().getId().equals(itemId)).findAny().orElse(null) == null;
-    }
 }
