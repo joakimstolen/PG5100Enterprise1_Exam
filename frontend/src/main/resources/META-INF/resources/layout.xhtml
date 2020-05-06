@@ -21,6 +21,8 @@
     <h:outputLabel>Welcome: </h:outputLabel><h:link class="btn  p-1 m-3 btn-outline-success" id="userID" outcome="user"
                                                     value="#{userInfoController.userName}"/> <br/>
     <h:outputLabel>Currency: #{userInfoController.user.currency}</h:outputLabel>
+    <br/>
+    <h:outputLabel>Available boxes: #{userInfoController.user.availableBoxes}</h:outputLabel>
 </sec:authenticated>
 
 <sec:anonymous>

@@ -19,11 +19,13 @@
         <c:set var="isCopied" value="#{param['isCopied']}"/>
 
 
+
         <sec:authenticated>
             <h:form prependId="false" id="bookingForm">
                 <h:commandButton value="Open Lootbox"
                                  action="#{itemCopyController.makeCopy(userInfoController.userName)}"
-                                 id="bookingBtn"/>
+                                 id="bookingBtn">
+                </h:commandButton>
             </h:form>
         </sec:authenticated>
 

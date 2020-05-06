@@ -26,8 +26,8 @@ public class UserInfoController {
     }
 
 
-    public Long buyLootBox(String userId){
-        return userService.buyLootBox(userId);
+    public Long buyLootBox(String userID){
+        return userService.buyLootBox(userID);
 
     }
 

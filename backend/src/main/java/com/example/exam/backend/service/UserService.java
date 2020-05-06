@@ -55,8 +55,8 @@ public class UserService {
     }
 
 
-    public Long buyLootBox(String userId){
-        Users user = em.find(Users.class, userId);
+    public Long buyLootBox(String userID){
+        Users user = em.find(Users.class, userID);
 
         if (user == null){
             throw new IllegalArgumentException("User not found");

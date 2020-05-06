@@ -22,7 +22,6 @@
         <h:outputLabel id="userNameID">User name: #{users.userID}</h:outputLabel><br/>
         <h:outputLabel>User last name: #{users.lastName}</h:outputLabel><br/>
 
-        <h:outputLabel>Available boxes: #{users.availableBoxes}</h:outputLabel>
 
 
         <sec:authenticated>
@@ -46,7 +45,6 @@
                                          id="detailsBtn1_#{item.id}"/>
                     </h:form>
                 </h:column>
-
 
             </h:dataTable>
         </sec:authenticated>
