@@ -5,6 +5,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -35,8 +36,12 @@ public class Users {
     @NotNull
     private Boolean enabled;
 
-    //@ManyToMany
-    //private List<PlaceHolder> placeHolderList;
+    @NotNull
+    private Long currency;
+
+
+    @ManyToMany
+    private List<Item> lootBoxesList;
 
     public String getUserID() {
         return userID;
@@ -93,12 +98,21 @@ public class Users {
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
-/*
-    public List<PlaceHolder> getPlaceHolderList() {
-        return placeHolderList;
+
+
+    public List<Item> getLootBoxesList() {
+        return lootBoxesList;
     }
 
-    public void setPlaceHolderList(List<PlaceHolder> placeHolderList) {
-        this.placeHolderList = placeHolderList;
-    }*/
+    public void setLootBoxesList(List<Item> lootBoxesList) {
+        this.lootBoxesList = lootBoxesList;
+    }
+
+    public Long getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(Long currency) {
+        this.currency = currency;
+    }
 }

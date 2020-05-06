@@ -34,7 +34,7 @@ public class SignUpController {
 
         boolean registered = false;
         try {
-            registered = userService.createUser(username, username, username + "last", password, username + "@email.com", "user");
+            registered = userService.createUser(username, username, username + "last", password, username + "@email.com", "user", 700L);
         } catch (Exception e) {
 
         }

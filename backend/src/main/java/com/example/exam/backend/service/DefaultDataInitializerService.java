@@ -23,27 +23,29 @@ public class DefaultDataInitializerService {
         String thirdUser = "bar";
         String fourthUser = "foobario";
 
+        Long currency = 600L;
+
         attempt(() -> {
             return userService.createUser(
-                    firstUser, firstUser, "admin-last-name", "123", "admin@email.com", "admin");
+                    firstUser, firstUser, "admin-last-name", "123", "admin@email.com", "admin", currency);
 
         });
 
         attempt(() -> {
             return userService.createUser(
-                    secondUser, secondUser, "foo-last-name", "123", "foo@email.com", "user");
+                    secondUser, secondUser, "foo-last-name", "123", "foo@email.com", "user", currency);
 
         });
 
         attempt(() -> {
             return userService.createUser(
-                    thirdUser, thirdUser, "bar-last-name", "123", "bar@email.com", "user");
+                    thirdUser, thirdUser, "bar-last-name", "123", "bar@email.com", "user", currency);
 
         });
 
         attempt(() -> {
             return userService.createUser(
-                    fourthUser, fourthUser, "foobario-last-name", "123", "foobario@email.com", "user");
+                    fourthUser, fourthUser, "foobario-last-name", "123", "foobario@email.com", "user", currency);
 
         });
 
