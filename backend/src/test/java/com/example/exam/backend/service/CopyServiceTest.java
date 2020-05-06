@@ -12,8 +12,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = TestApplication.class,
@@ -53,6 +52,20 @@ public class CopyServiceTest extends ServiceTestBase{
 
         List<Copy> userCopy = copyService.filterCopyByUser(user.getUserID());
         assertEquals(2, userCopy.size());
+
+    }
+
+
+    @Test
+    public void testMillItem(){
+        String userId = "test";
+        userService.createUser(userId, userId, "lastname", "123", "test@mail.com", "user", 400L);
+        Long firstItem = itemService.createItem("name1", "desc1", "type1", 900L);
+        Long firstCopy = copyService.newCopy(firstItem, userId);
+        assertNotNull(firstCopy);
+
+        Long milling = copyService.millCopy(firstCopy, userId);
+        assertEquals(milling.longValue(), 0);
 
     }
 

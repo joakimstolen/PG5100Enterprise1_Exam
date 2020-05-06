@@ -120,7 +120,8 @@ public class Users {
         return currency;
     }
 
-    public void setCurrency(Long currency) {
+    public long setCurrency(Long currency) {
         this.currency = currency;
+        return 0;
     }
 }

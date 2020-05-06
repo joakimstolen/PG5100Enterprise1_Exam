@@ -61,7 +61,7 @@ public class CopyService {
     }
 
 
-    private Long millCopy(Long copyId, String userId){
+    public Long millCopy(Long copyId, String userId){
         Copy copy = entityManager.find(Copy.class, copyId);
         Users user = entityManager.find(Users.class, userId);
 
@@ -70,8 +70,23 @@ public class CopyService {
         }
 
         long currency = user.getCurrency() + copy.getItemInformation().getPrice();
-        int duplicates = copy.ge
+        int duplicates = copy.getDuplicates();
+
+        if (duplicates > 1){
+            entityManager.remove(copy.getId());
+        } else {
+            duplicates--;
+            copy.setDuplicates(duplicates);
+        }
+
+        long newCurrency = user.setCurrency(currency);
+
+        return newCurrency;
+
     }
+
+
+
 
 
     public List<Copy> filterCopyByUser(String userId){

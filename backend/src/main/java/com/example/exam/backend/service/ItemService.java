@@ -1,6 +1,7 @@
 package com.example.exam.backend.service;
 
 import com.example.exam.backend.entity.Item;
+import com.example.exam.backend.entity.Users;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -96,6 +97,17 @@ public class ItemService {
 
     }
 
+
+    public Long sellLootBox(Long itemID, String userID) {
+        Item item = entityManager.find(Item.class, itemID);
+        Users users = entityManager.find(Users.class, userID);
+        List<Item> items = users.getLootBoxesList();
+        items.remove(item);
+        users.setCurrency(users.getCurrency() + item.getPrice());
+        users.setLootBoxesList(items);
+
+        return itemID;
+    }
 
 
     public void deleteItem(Long itemId){

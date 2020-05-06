@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
+import javax.persistence.EntityManager;
 import java.io.Serializable;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,9 +28,14 @@ public class ItemCopyController implements Serializable {
     private CopyService copyService;
 
     @Autowired
+    private EntityManager entityManager;
+
+    @Autowired
     private UserService userService;
 
     private Long itemId;
+
+    private Long copyId;
 
     public List<Item> getItems(int numberOfItems){
         return itemService.getAllItems(true).stream().limit(numberOfItems).collect(Collectors.toList());
@@ -42,6 +48,14 @@ public class ItemCopyController implements Serializable {
     public String getItemRedirectionLink(Long itemId){
         this.itemId = itemId;
         return "/details.jsf?itemId=" + itemId + "&faces-redirect=true";
+    }
+
+    public Long millItem(Long itemId, String userId){
+        return copyService.millCopy(itemId, userId);
+    }
+
+    public void sellLootBox(Long itemID, String userID) {
+        itemService.sellLootBox(itemID, userID);
     }
 
 
