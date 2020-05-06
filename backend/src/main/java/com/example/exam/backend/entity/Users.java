@@ -11,7 +11,6 @@ import java.util.Set;
 @Entity
 public class Users {
 
-    public static final int MIN_PASSWORD_LENGTH = 3;
 
     @Id
     @NotBlank
@@ -47,9 +46,17 @@ public class Users {
     private List<Item> lootBoxesList;
 
 
+    @NotNull
+    private int availableBoxes;
 
 
+    public int getAvailableBoxes() {
+        return availableBoxes;
+    }
 
+    public void setAvailableBoxes(int availableBoxes) {
+        this.availableBoxes = availableBoxes;
+    }
 
     public String getUserID() {
         return userID;

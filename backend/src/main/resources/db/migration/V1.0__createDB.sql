@@ -33,6 +33,7 @@ create table users
     last_name varchar(128),
     first_name varchar(128),
     currency bigint not null,
+    available_boxes int not null,
     primary key (userid)
 );
 

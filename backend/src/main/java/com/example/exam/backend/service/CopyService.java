@@ -44,13 +44,26 @@ public class CopyService {
             throw new IllegalArgumentException("User not found");
         }
 
-        if (users.getCurrency() <= 100){
+//        if (users.getCurrency() <= 100){
+//            return null;
+//        }
+//
+//        long cost = 200L;
+//        long currency= users.getCurrency();
+//        users.setCurrency(currency-cost);
+
+
+        int updatedAvailableBoxes = users.getAvailableBoxes() -1;
+
+        if (updatedAvailableBoxes < 0){
             return null;
         }
+        users.setAvailableBoxes(updatedAvailableBoxes);
 
-        long cost = 200L;
-        long currency= users.getCurrency();
-        users.setCurrency(currency-cost);
+
+
+
+
 
         Copy copy = new Copy();
         copy.setPurchasedBy(users);

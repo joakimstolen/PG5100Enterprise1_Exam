@@ -33,53 +33,53 @@ public class DefaultDataInitializerService {
         //Create som default users
         attempt(() -> {
             return userService.createUser(
-                    firstUser, firstUser, "admin-last-name", "123", "admin@email.com", "admin", currency);
+                    firstUser, firstUser, "admin-last-name", "123", "admin@email.com", "admin", currency, 1);
 
         });
 
         attempt(() -> {
             return userService.createUser(
-                    secondUser, secondUser, "foo-last-name", "123", "foo@email.com", "user", currency);
+                    secondUser, secondUser, "foo-last-name", "123", "foo@email.com", "user", currency,1);
 
         });
 
         attempt(() -> {
             return userService.createUser(
-                    thirdUser, thirdUser, "bar-last-name", "123", "bar@email.com", "user", currency);
+                    thirdUser, thirdUser, "bar-last-name", "123", "bar@email.com", "user", currency,1);
 
         });
 
         attempt(() -> {
             return userService.createUser(
-                    fourthUser, fourthUser, "foobario-last-name", "123", "foobario@email.com", "user", currency);
+                    fourthUser, fourthUser, "foobario-last-name", "123", "foobario@email.com", "user", currency,1);
 
         });
 
 
         //Create som default items
         Long firstItem = attempt(() ->
-                itemService.createItem("Charmander", "Reception to Bulbasaur has been largely positive and it often appears in top Pokémon lists", "Grass & Poison", 900L)
+                itemService.createItem("Charmander", "Reception to Bulbasaur has been largely positive and it often appears in top Pokémon lists", "Grass & Poison", 150L)
         );
 
         Long secondItem = attempt(() ->
-                itemService.createItem("Pikachu", "It raises its tail to check its surroundings and it sometimes gets struck by lightning in that pose", "Electric", 1200L)
+                itemService.createItem("Pikachu", "It raises its tail to check its surroundings and it sometimes gets struck by lightning in that pose", "Electric", 120L)
         );
 
 
         Long thirdItem = attempt(() ->
-                itemService.createItem("Oddish", "It buries itself in the soil to absorb the nutrients. the more water it drinks, the glossier it becomes.", "Grass & Poison", 400L)
+                itemService.createItem("Oddish", "It buries itself in the soil to absorb the nutrients. the more water it drinks, the glossier it becomes.", "Grass & Poison", 150L)
         );
 
         Long fourthItem = attempt(() ->
-                itemService.createItem("Squirtle", "Its English name is a portmanteau of squirt and turtle", "Water", 750L)
+                itemService.createItem("Squirtle", "Its English name is a portmanteau of squirt and turtle", "Water", 150L)
         );
 
         Long fifthItem = attempt(() ->
-                itemService.createItem("Diglett", "Farmers like to use Digletts to plow to soil for crops to grow plentifully.", "Ground", 575L)
+                itemService.createItem("Diglett", "Farmers like to use Digletts to plow to soil for crops to grow plentifully.", "Ground", 175L)
         );
 
         Long sixthItem = attempt(() ->
-                itemService.createItem("Grimer", "It eats sewer waste for food. Its body is very slippery so it can slip through almost any opening.", "Poison", 1100L)
+                itemService.createItem("Grimer", "It eats sewer waste for food. Its body is very slippery so it can slip through almost any opening.", "Poison", 125L)
         );
 
 

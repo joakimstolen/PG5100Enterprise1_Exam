@@ -22,7 +22,7 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public boolean createUser(String userName, String firstName, String lastName, String password, String email, String role, Long currency) {
+    public boolean createUser(String userName, String firstName, String lastName, String password, String email, String role, Long currency, int availableBoxes) {
         String hashedPassword = passwordEncoder.encode(password);
 
         if ((em.find(Users.class, userName) != null) || (em.find(Users.class, email) != null)) {
@@ -38,6 +38,7 @@ public class UserService {
         users.setEnabled(true);
         users.setEmail(email);
         users.setCurrency(currency);
+        users.setAvailableBoxes(availableBoxes);
 
         em.persist(users);
 
@@ -53,6 +54,27 @@ public class UserService {
         return users;
     }
 
+
+    public Long buyLootBox(String userId){
+        Users user = em.find(Users.class, userId);
+
+        if (user == null){
+            throw new IllegalArgumentException("User not found");
+        }
+
+        long currency = user.getCurrency();
+        int lootBox = user.getAvailableBoxes();
+
+        if (currency < 100L){
+            return null;
+        }
+
+        currency = (currency-100L);
+        lootBox++;
+        user.setAvailableBoxes(lootBox);
+
+        return user.setCurrency(currency);
+    }
 
 
 

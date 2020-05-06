@@ -13,8 +13,6 @@ import javax.inject.Named;
 @RequestScoped
 public class UserInfoController {
 
-    /*@Autowired
-    private PurchaseService purchaseService;*/
 
     @Autowired
     private UserService userService;
@@ -27,5 +25,10 @@ public class UserInfoController {
         return userService.findUserByUserName(getUserName());
     }
 
+
+    public Long buyLootBox(String userId){
+        return userService.buyLootBox(userId);
+
+    }
 
 }

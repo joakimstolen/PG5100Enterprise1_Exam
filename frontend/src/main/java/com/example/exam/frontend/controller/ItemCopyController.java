@@ -35,7 +35,6 @@ public class ItemCopyController implements Serializable {
 
     private Long itemId;
 
-    private Long copyId;
 
     public List<Item> getItems(int numberOfItems){
         return itemService.getAllItems(true).stream().limit(numberOfItems).collect(Collectors.toList());
