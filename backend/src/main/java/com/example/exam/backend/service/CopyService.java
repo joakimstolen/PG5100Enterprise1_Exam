@@ -23,7 +23,7 @@ public class CopyService {
         return query.getResultList();
     }
 
-    public List<Copy> filterCopyByUserId(Long itemId){
+    public List<Copy> filterCopyByItem(Long itemId){
         TypedQuery<Copy> query = entityManager.createQuery("SELECT c FROM Copy c WHERE c.itemInformation.id =?1", Copy.class);
         query.setParameter(1, itemId);
 

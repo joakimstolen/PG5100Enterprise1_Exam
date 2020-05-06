@@ -46,7 +46,7 @@ public class UserService {
         if (users == null) {
             throw new IllegalStateException("No user with given userName");
         }
-        //users.getPlaceHolderList().size();
+        users.getLootBoxesList().size();
         return users;
     }
 

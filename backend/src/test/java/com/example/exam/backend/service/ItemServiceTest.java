@@ -50,5 +50,21 @@ public class ItemServiceTest extends ServiceTestBase{
     }
 
 
+    @Test
+    public void testFilterItemsByLocation(){
+        Long firstItem = itemService.createItem("test", "test", "test", 100L);
+        Long secondItem = itemService.createItem("test2", "test2", "test2", 300L);
+        Long thirdItem = itemService.createItem("test2", "test2", "test2", 200L);
+
+        assertNotNull(firstItem);
+        assertNotNull(secondItem);
+        assertNotNull(thirdItem);
+
+        List<Item> name1 = itemService.filterItemsByName("test2");
+        List<Item> name2 = itemService.filterItemsByName("test");
+
+        assertEquals(2, name1.size());
+        assertEquals(1, name2.size());
+    }
 
 }
