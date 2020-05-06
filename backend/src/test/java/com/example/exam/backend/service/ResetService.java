@@ -1,5 +1,7 @@
 package com.example.exam.backend.service;
 
+import com.example.exam.backend.entity.Copy;
+import com.example.exam.backend.entity.Item;
 import com.example.exam.backend.entity.Users;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,8 +21,8 @@ public class ResetService {
         Query query = entityManager.createNativeQuery("DELETE FROM users_roles");
         query.executeUpdate();
 
-        //deleteEntities(Purchase.class);
-        //deleteEntities(Trip.class);
+        deleteEntities(Copy.class);
+        deleteEntities(Item.class);
         deleteEntities(Users.class);
     }
 

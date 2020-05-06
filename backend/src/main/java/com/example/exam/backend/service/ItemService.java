@@ -48,6 +48,22 @@ public class ItemService {
     }
 
 
+    public Item getItem(long itemId, boolean withBuyers){
+        Item item = entityManager.find(Item.class, itemId);
+
+        if (item == null){
+            throw new IllegalArgumentException("No item found");
+        }
+
+        if (withBuyers){
+            item.getAllItemBuyers().size();
+        }
+
+        return item;
+    }
+
+
+
     public void deleteItem(Long itemId){
         Item itemToRemove = entityManager.find(Item.class, itemId);
 

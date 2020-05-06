@@ -43,6 +43,11 @@ public class Users {
     @ManyToMany
     private List<Item> lootBoxesList;
 
+
+
+
+
+
     public String getUserID() {
         return userID;
     }
