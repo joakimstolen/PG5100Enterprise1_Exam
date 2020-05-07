@@ -2,15 +2,15 @@ package com.example.exam.selenium;
 
 import com.example.exam.Application;
 import com.example.exam.backend.entity.Copy;
+import com.example.exam.backend.entity.Item;
+import com.example.exam.backend.service.ItemService;
 import com.example.exam.selenium.po.IndexPO;
 import com.example.exam.selenium.po.SignUpPO;
 import com.example.exam.selenium.po.UserPO;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.context.ActiveProfiles;
@@ -29,6 +29,9 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = Application.class, webEnvironment = RANDOM_PORT)
 public class SeleniumLocalIT {
+
+    @Autowired
+    ItemService itemService;
 
     private static WebDriver driver;
 
@@ -149,7 +152,6 @@ public class SeleniumLocalIT {
         assertTrue(userPO.getUserName().contains(userID));
 
 
-        //Is 1 because of the tableheaders
         assertEquals(0, home.getNumberOfItemsDisplayedUserPage());
         assertTrue(userPO.getDriver().getPageSource().contains("Available boxes: 3"));
 
@@ -186,9 +188,11 @@ public class SeleniumLocalIT {
         assertNotNull(userPO);
         assertTrue(userPO.getUserName().contains(userID));
 
-        userPO.clickAndWait("openLootBtn");
-        userPO.clickAndWait("openLootBtn");
-        userPO.clickAndWait("openLootBtn");
+
+
+        for (int i = 0; i < 3; i++){
+            userPO.clickAndWait("openLootBtn");
+        }
 
         assertTrue(userPO.getDriver().getPageSource().contains("You are out of Lootboxes"));
     }
@@ -212,6 +216,40 @@ public class SeleniumLocalIT {
         assertTrue(userPO.getDriver().getPageSource().contains("Available boxes: 4"));
 
     }
+
+
+    @Test
+    public void testMillItem(){
+        UserPO userPO = home.getUserInfo();
+        assertNull(userPO);
+
+        String userID = getUniqueId();
+        home = createNewUser(userID, "123456");
+        userPO = home.getUserInfo();
+        assertNotNull(userPO);
+        assertTrue(userPO.getUserName().contains(userID));
+        userPO.clickAndWait("openLootBtn");
+        assertTrue(userPO.getDriver().getPageSource().contains("Available boxes: 2"));
+        userPO.clickAndWait("j_idt20:itemTable:0:millBtn");
+        assertEquals(2, home.getNumberOfItemsDisplayed());
+
+    }
+
+
+
+    //Search function
+    @Test
+    public void testSearch() {
+
+        List<Item> allItems = itemService.getItems();
+        Item firstItem = allItems.get(0);
+        home = home.searchOnPage("byPrice", firstItem.getPrice().toString());
+        assertTrue(home.isInFirstColumn(firstItem.getId().toString()));
+        home.toStartingPage();
+        home = home.searchOnPage("byName", firstItem.getName());
+        assertTrue(home.isInFirstColumn(firstItem.getId().toString()));
+    }
+
 
 
 
