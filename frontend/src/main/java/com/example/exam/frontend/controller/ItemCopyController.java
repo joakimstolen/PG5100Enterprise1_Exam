@@ -49,8 +49,8 @@ public class ItemCopyController implements Serializable {
         itemService.openLootBox(userID);
     }
 
-    public Long millItem(Long copyId, String userId){
-        return copyService.millCopy(copyId, userId);
+    public void millItem(Long copyId, String userId){
+        copyService.millCopy(copyId, userId);
     }
 
     public void sellLootBox(Long itemID, String userID) {
