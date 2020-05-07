@@ -77,9 +77,8 @@
                     <h:outputText value="#{copy.duplicates}"/>
                 </h:column>
                 <h:column>
-                    <h:commandButton value="Mill Item"
+                    <h:commandButton value="Mill 1 #{copy.itemInformation.name}"
                                      action="#{itemCopyController.millItem(copy.id, users.userID)}"
-                                     onclick="window.location.reload()"
                                      id="millBtn"/>
                 </h:column>
 

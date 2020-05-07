@@ -16,7 +16,7 @@ public class Copy {
     @ManyToOne
     private Users itemCopyOwner;
 
-    @ManyToOne //One pokemon can have many purchases, but one single purchase can only be related to one pokemon
+    @ManyToOne
     @NotNull
     private Item itemInformation;
 
