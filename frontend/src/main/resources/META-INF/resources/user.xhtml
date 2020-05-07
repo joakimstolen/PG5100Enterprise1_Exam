@@ -36,6 +36,7 @@
                                 <h:commandButton value="Open Lootbox"
                                                  styleClass="btn btn-outline-info"
                                                  action="#{itemCopyController.openLootBox(users.userID)}"
+                                                 id="openLootBtn"
                                                  />
                             </h:form>
                         </c:otherwise>
@@ -44,6 +45,7 @@
                         <h:commandButton value="Purchase lootbox for 100"
                                          styleClass="btn btn-outline-info"
                                          action="#{userInfoController.buyLootBox(users.userID)}"
+                                         id="buyLootBtn"
                                          />
                     </h:form>
 

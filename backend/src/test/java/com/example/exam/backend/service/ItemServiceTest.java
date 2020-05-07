@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -62,7 +63,7 @@ public class ItemServiceTest extends ServiceTestBase{
 
 
     @Test
-    public void testFilterItemsByLocation(){
+    public void testFilterItemsByName(){
         Long firstItem = itemService.createItem("test", "test", "test", 100L);
         Long secondItem = itemService.createItem("test2", "test2", "test2", 300L);
         Long thirdItem = itemService.createItem("test2", "test2", "test2", 200L);
@@ -76,6 +77,23 @@ public class ItemServiceTest extends ServiceTestBase{
 
         assertEquals(2, name1.size());
         assertEquals(1, name2.size());
+    }
+
+    @Test
+    public void filterByPrice() {
+        Long firstItem = itemService.createItem("test", "test", "test", 100L);
+        Long secondItem = itemService.createItem("test2", "test2", "test2", 300L);
+        Long thirdItem = itemService.createItem("test2", "test2", "test2", 100L);
+
+        assertNotNull(firstItem);
+        assertNotNull(secondItem);
+        assertNotNull(thirdItem);
+
+        List<Item> lowPrice = itemService.filterByPrice(100L);
+        List<Item> highPrice = itemService.filterByPrice(300L);
+
+        assertEquals(1,highPrice.size());
+        assertEquals(2,lowPrice.size());
     }
 
 }

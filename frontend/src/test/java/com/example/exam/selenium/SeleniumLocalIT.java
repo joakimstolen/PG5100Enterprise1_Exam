@@ -1,6 +1,7 @@
 package com.example.exam.selenium;
 
 import com.example.exam.Application;
+import com.example.exam.backend.entity.Copy;
 import com.example.exam.selenium.po.IndexPO;
 import com.example.exam.selenium.po.SignUpPO;
 import com.example.exam.selenium.po.UserPO;
@@ -15,6 +16,7 @@ import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.junit.Assert.assertFalse;
@@ -68,6 +70,8 @@ public class SeleniumLocalIT {
     }
 
     private IndexPO home;
+
+    private UserPO userPO;
 
     private IndexPO createNewUser(String username, String password) {
         home.toStartingPage();
@@ -126,5 +130,90 @@ public class SeleniumLocalIT {
         userPO = home.getUserInfo();
         assertNull(userPO);
     }
+
+    @Test
+    public void testDisplayHomePage(){
+        assertEquals(7, home.getNumberOfItemsDisplayed());
+    }
+
+
+    @Test
+    public void testEmptyCollection(){
+        UserPO userPO = home.getUserInfo();
+        assertNull(userPO);
+
+        String userID = getUniqueId();
+        home = createNewUser(userID, "123456");
+        userPO = home.getUserInfo();
+        assertNotNull(userPO);
+        assertTrue(userPO.getUserName().contains(userID));
+
+
+        //Is 1 because of the tableheaders
+        assertEquals(0, home.getNumberOfItemsDisplayedUserPage());
+        assertTrue(userPO.getDriver().getPageSource().contains("Available boxes: 3"));
+
+    }
+
+
+    @Test
+    public void testRedeemLootBox() {
+
+        UserPO userPO = home.getUserInfo();
+        assertNull(userPO);
+
+        String userID = getUniqueId();
+        home = createNewUser(userID, "123456");
+        userPO = home.getUserInfo();
+        assertNotNull(userPO);
+        assertTrue(userPO.getUserName().contains(userID));
+
+        userPO.clickAndWait("openLootBtn");
+        assertTrue(userPO.getDriver().getPageSource().contains("Available boxes: 2"));
+
+        assertEquals(2, home.getNumberOfItemsDisplayed());
+    }
+
+
+    @Test
+    public void testFailedReedemLootBox(){
+        UserPO userPO = home.getUserInfo();
+        assertNull(userPO);
+
+        String userID = getUniqueId();
+        home = createNewUser(userID, "123456");
+        userPO = home.getUserInfo();
+        assertNotNull(userPO);
+        assertTrue(userPO.getUserName().contains(userID));
+
+        userPO.clickAndWait("openLootBtn");
+        userPO.clickAndWait("openLootBtn");
+        userPO.clickAndWait("openLootBtn");
+
+        assertTrue(userPO.getDriver().getPageSource().contains("You are out of Lootboxes"));
+    }
+
+    @Test
+    public void testBuyLootbox(){
+        UserPO userPO = home.getUserInfo();
+        assertNull(userPO);
+
+        String userID = getUniqueId();
+        home = createNewUser(userID, "123456");
+        userPO = home.getUserInfo();
+        assertNotNull(userPO);
+        assertTrue(userPO.getUserName().contains(userID));
+
+        assertTrue(userPO.getDriver().getPageSource().contains("Currency: 700"));
+
+        userPO.clickAndWait("buyLootBtn");
+
+        assertTrue(userPO.getDriver().getPageSource().contains("Currency: 600"));
+        assertTrue(userPO.getDriver().getPageSource().contains("Available boxes: 4"));
+
+    }
+
+
+
 
 }

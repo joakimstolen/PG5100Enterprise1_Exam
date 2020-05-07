@@ -26,13 +26,21 @@ public class IndexPO extends LayoutPO {
     }
 
     public String getRandomButton() {
-        List<WebElement> buttons = getDriver().findElements(By.xpath("//*[contains(./@id, 'detailsBtn')]"));
+        List<WebElement> buttons = getDriver().findElements(By.xpath("//*[contains(./@id, 'openLootBtn')]"));
         int indexOfButton = new Random().nextInt(buttons.size());
         return buttons.get(indexOfButton).getAttribute("id");
     }
 
-    public int getNumberOfTripsDisplayed() {
-        return getDriver().findElements(By.xpath("//table//tr")).size() - 1;
+    public int getNumberOfItemsDisplayed() {
+        return getDriver().findElements(By.xpath("//table//tr")).size();
+    }
+
+    public int getNumberOfItemsDisplayedUserPage() {
+        return getDriver().findElements(By.xpath("//*[@id=\"j_idt22:itemTable\"]")).size();
+    }
+
+    public int getNumerOfLootBoxes(){
+        return getDriver().findElements(By.xpath("//html/body/label[3]")).size();
     }
 
     public IndexPO searchOnPage(String selection, String query) {
@@ -51,13 +59,13 @@ public class IndexPO extends LayoutPO {
         return getDriver().getTitle().contains("Home page");
     }
 
-    /*public DetailsPO getDetails(String id) {
+    public UserPO getUserDetails(String id) {
         clickAndWait(id);
-        DetailsPO detailsPO = new DetailsPO(this);
-        assertTrue(detailsPO.isOnPage());
+        UserPO userPO = new UserPO(this);
+        assertTrue(userPO.isOnPage());
 
-        return detailsPO;
-    }*/
+        return userPO;
+    }
 
     public UserPO getUserInfo() {
 
