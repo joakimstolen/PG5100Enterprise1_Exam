@@ -107,9 +107,9 @@ public class ItemService {
             newLootBoxCount--;
             users.setAvailableBoxes(newLootBoxCount);
 
+
             copyService.newCopy(getRandomItem().getId(), userID);
-            copyService.newCopy(getRandomItem().getId(), userID);
-            copyService.newCopy(getRandomItem().getId(), userID);
+
 
 
             return true;
