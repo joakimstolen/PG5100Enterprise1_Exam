@@ -27,22 +27,13 @@ public class ItemCopyController implements Serializable {
     @Autowired
     private CopyService copyService;
 
-    @Autowired
-    private EntityManager entityManager;
 
-    @Autowired
-    private UserService userService;
-
-    private Long itemId;
 
 
     public List<Item> getItems(int numberOfItems){
         return itemService.getAllItems(true).stream().limit(numberOfItems).collect(Collectors.toList());
     };
 
-//    public List<Item> getRandomItems(int numberOfItems){
-//        return itemService.getRandomItems(numberOfItems, true).stream().limit(numberOfItems).collect(Collectors.toList());
-//    }
 
 
     public String openLootBox(String userID){

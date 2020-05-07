@@ -26,16 +26,5 @@ public class UserPO extends LayoutPO {
     }
 
 
-    public UserPO redeemLoot(String itemId){
-        if(getDriver().findElements(By.id("openLootBtn")).size() == 0)
-            return null;
-        clickAndWait("openLootBtn");
-        UserPO userPO = new UserPO(this);
-        //After clicking booking button our table should have id of user in it
-        //User id is found first column
-
-        assertTrue(isInFirstColumn(itemId));
-        return userPO;
-    }
 
 }

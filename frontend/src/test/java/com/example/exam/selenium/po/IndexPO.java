@@ -25,11 +25,6 @@ public class IndexPO extends LayoutPO {
         getDriver().get(host + ":" + port);
     }
 
-    public String getRandomButton() {
-        List<WebElement> buttons = getDriver().findElements(By.xpath("//*[contains(./@id, 'openLootBtn')]"));
-        int indexOfButton = new Random().nextInt(buttons.size());
-        return buttons.get(indexOfButton).getAttribute("id");
-    }
 
     public int getNumberOfItemsDisplayed() {
         return getDriver().findElements(By.xpath("//table//tr")).size();
@@ -39,9 +34,6 @@ public class IndexPO extends LayoutPO {
         return getDriver().findElements(By.xpath("//*[@id=\"j_idt22:itemTable\"]")).size();
     }
 
-    public int getNumerOfLootBoxes(){
-        return getDriver().findElements(By.xpath("//html/body/label[3]")).size();
-    }
 
     public IndexPO searchOnPage(String selection, String query) {
         setText("queryInputID", query);

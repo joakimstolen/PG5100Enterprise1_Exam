@@ -24,12 +24,6 @@ public class CopyService {
         return query.getResultList();
     }
 
-    public List<Copy> filterCopyByItem(Long itemId){
-        TypedQuery<Copy> query = entityManager.createQuery("SELECT c FROM Copy c WHERE c.itemInformation.id =?1", Copy.class);
-        query.setParameter(1, itemId);
-
-        return query.getResultList();
-    }
 
 
 
@@ -46,18 +40,7 @@ public class CopyService {
         }
 
 
-//
-//
-//        for (int i = 0; i < copyList.size(); i++){
-//            Long copy = copyList.get(i).getItemInformation().getId();
-//
-//            if(copy.equals(itemId)){
-//                users.getCopies();
-//            }
-//        }
-
         List<Copy> copyList = users.getCopies();
-
         boolean duplicate = false;
         for (ListIterator<Copy> iterator = copyList.listIterator(); iterator.hasNext();){
             Copy copy = iterator.next();
@@ -73,7 +56,7 @@ public class CopyService {
             Copy copy = new Copy();
             copy.setItemCopyOwner(users);
             copy.setItemInformation(item);
-            copy.setDuplicates(1);
+            copy.setDuplicates(0);
             entityManager.persist(copy);
             return copy.getId();
         }
@@ -96,7 +79,7 @@ public class CopyService {
 
         //deleteCopy(copy.getId());
 
-        if (duplicates <= 1){
+        if (duplicates <= 0){
             deleteCopy(copy.getId());
 
         } else {

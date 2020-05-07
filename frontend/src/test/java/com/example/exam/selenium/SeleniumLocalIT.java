@@ -99,6 +99,7 @@ public class SeleniumLocalIT {
         assertTrue(home.isOnPage(), "Failed to start from home page");
     }
 
+    //EXtra test to create and logout user
     @Test
     public void testCreateAndLogoutUser() {
         assertFalse(home.isLoggedIn());
@@ -118,10 +119,9 @@ public class SeleniumLocalIT {
     }
 
 
+    //testing access to user page. should fail if user is not logged in
     @Test
     public void testDisplayUserInfo() {
-        //Try to access user info page
-        //As we are not logged in it should fail
         UserPO userPO = home.getUserInfo();
         assertNull(userPO);
         String userID = getUniqueId();
@@ -218,6 +218,7 @@ public class SeleniumLocalIT {
     }
 
 
+    //Did not manage to complete this perfectly
     @Test
     public void testMillItem(){
         UserPO userPO = home.getUserInfo();
@@ -230,6 +231,7 @@ public class SeleniumLocalIT {
         assertTrue(userPO.getUserName().contains(userID));
         userPO.clickAndWait("openLootBtn");
         assertTrue(userPO.getDriver().getPageSource().contains("Available boxes: 2"));
+        assertTrue(userPO.getDriver().getPageSource().contains("Currency: 700"));
         userPO.clickAndWait("j_idt20:itemTable:0:millBtn");
         assertEquals(2, home.getNumberOfItemsDisplayed());
 
