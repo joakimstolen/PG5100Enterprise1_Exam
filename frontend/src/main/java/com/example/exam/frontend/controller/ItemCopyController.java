@@ -45,12 +45,14 @@ public class ItemCopyController implements Serializable {
 //    }
 
 
-    public void openLootBox(String userID){
+    public String openLootBox(String userID){
         itemService.openLootBox(userID);
+        return "/user.xhtml?faces-redirect=true&successFull=true";
     }
 
-    public void millItem(Long copyId, String userId){
+    public String millItem(Long copyId, String userId){
         copyService.millCopy(copyId, userId);
+        return "/user.xhtml?faces-redirect=true&successFull=true";
     }
 
     public void sellLootBox(Long itemID, String userID) {

@@ -36,7 +36,7 @@
                                 <h:commandButton value="Open Lootbox"
                                                  styleClass="btn btn-outline-info"
                                                  action="#{itemCopyController.openLootBox(users.userID)}"
-                                                 id="detailsBtn_#{item.id}"/>
+                                                 />
                             </h:form>
                         </c:otherwise>
                     </c:choose>
@@ -44,7 +44,7 @@
                         <h:commandButton value="Purchase lootbox for 100"
                                          styleClass="btn btn-outline-info"
                                          action="#{userInfoController.buyLootBox(users.userID)}"
-                                         id="detailsBtn1_#{item.id}"/>
+                                         />
                     </h:form>
 
 
@@ -77,6 +77,7 @@
                 <h:column>
                     <h:commandButton value="Mill Item"
                                      action="#{itemCopyController.millItem(copy.id, users.userID)}"
+                                     onclick="window.location.reload()"
                                      id="millBtn"/>
                 </h:column>
 

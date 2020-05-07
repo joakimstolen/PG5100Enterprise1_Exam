@@ -26,9 +26,9 @@ public class UserInfoController {
     }
 
 
-    public void buyLootBox(String userID){
+    public String buyLootBox(String userID){
         userService.buyLootBox(userID);
-
+        return "/user.xhtml?faces-redirect=true&successFull=true";
     }
 
 }
