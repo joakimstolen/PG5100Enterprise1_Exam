@@ -71,8 +71,12 @@
                     <h:outputText value="#{copy.itemInformation.price}"/>
                 </h:column>
                 <h:column>
+                    <f:facet name="header">Duplicates</f:facet>
+                    <h:outputText value="#{copy.duplicates}"/>
+                </h:column>
+                <h:column>
                     <h:commandButton value="Mill Item"
-                                     action="#{itemCopyController.sellLootBox(copy.id, users.userID)}"
+                                     action="#{itemCopyController.millItem(copy.id, users.userID)}"
                                      id="millBtn"/>
                 </h:column>
 

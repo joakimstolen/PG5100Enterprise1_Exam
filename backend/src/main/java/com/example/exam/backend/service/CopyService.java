@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.util.List;
+import java.util.ListIterator;
 
 @Service
 @Transactional
@@ -44,29 +45,41 @@ public class CopyService {
             throw new IllegalArgumentException("User not found");
         }
 
-//        if (users.getCurrency() <= 100){
-//            return null;
-//        }
+
 //
-//        long cost = 200L;
-//        long currency= users.getCurrency();
-//        users.setCurrency(currency-cost);
-
-
-//        int updatedAvailableBoxes = users.getAvailableBoxes() -1;
 //
-//        if (updatedAvailableBoxes < 0){
-//            return null;
+//        for (int i = 0; i < copyList.size(); i++){
+//            Long copy = copyList.get(i).getItemInformation().getId();
+//
+//            if(copy.equals(itemId)){
+//                users.getCopies();
+//            }
 //        }
-//        users.setAvailableBoxes(updatedAvailableBoxes);
 
+        List<Copy> copyList = users.getCopies();
 
-        Copy copy = new Copy();
-        copy.setItemCopyOwner(users);
-        copy.setItemInformation(item);
-        users.getCopies().add(copy);
-        entityManager.persist(copy);
-        return copy.getId();
+        boolean duplicate = false;
+        for (ListIterator<Copy> iterator = copyList.listIterator(); iterator.hasNext();){
+            Copy copy = iterator.next();
+            if (copy.getItemInformation().getId().equals(itemId)){
+                int i = copy.getDuplicates();
+                i++;
+                copy.setDuplicates(i);
+                duplicate = true;
+            }
+        }
+
+        if (!duplicate){
+            Copy copy = new Copy();
+            copy.setItemCopyOwner(users);
+            copy.setItemInformation(item);
+            copy.setDuplicates(1);
+            entityManager.persist(copy);
+            return copy.getId();
+        }
+
+        return null;
+
     }
 
 
@@ -81,8 +94,11 @@ public class CopyService {
         long currency = user.getCurrency() + copy.getItemInformation().getPrice();
         int duplicates = copy.getDuplicates();
 
-        if (duplicates > 1){
-            entityManager.remove(copy.getId());
+        //deleteCopy(copy.getId());
+
+        if (duplicates <= 1){
+            deleteCopy(copy.getId());
+
         } else {
             duplicates--;
             copy.setDuplicates(duplicates);
@@ -92,6 +108,16 @@ public class CopyService {
 
         return newCurrency;
 
+    }
+
+    public void deleteCopy(Long copyId){
+        Copy copyToRemove = entityManager.find(Copy.class, copyId);
+
+        if (copyToRemove == null){
+            throw new IllegalArgumentException("No such pokemon found");
+        }
+
+        entityManager.remove(copyToRemove);
     }
 
 

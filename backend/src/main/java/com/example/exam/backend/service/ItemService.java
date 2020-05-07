@@ -125,7 +125,7 @@ public class ItemService {
         Item item = entityManager.find(Item.class, itemID);
         Users users = entityManager.find(Users.class, userID);
         List<Copy> copy = users.getCopies();
-        copy.remove(itemID);
+        copy.remove(item);
         users.setCurrency(users.getCurrency() + item.getPrice());
         users.setCopies(copy);
 
@@ -133,15 +133,6 @@ public class ItemService {
     }
 
 
-    public void deleteItem(Long itemId){
-        Item itemToRemove = entityManager.find(Item.class, itemId);
-
-        if (itemToRemove == null){
-            throw new IllegalArgumentException("No such pokemon found");
-        }
-
-        entityManager.remove(itemToRemove);
-    }
 
     public List<Item> filterItemsByName(String name){
         TypedQuery<Item> query = entityManager.createQuery("SELECT i FROM Item i WHERE i.name =?1 ORDER BY i.name ASC", Item.class);
