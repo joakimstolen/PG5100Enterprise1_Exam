@@ -44,10 +44,6 @@ public class ItemCopyController implements Serializable {
         return itemService.getRandomItems(numberOfItems, true).stream().limit(numberOfItems).collect(Collectors.toList());
     }
 
-    public String getItemRedirectionLink(Long itemId){
-        this.itemId = itemId;
-        return "/details.jsf?itemId=" + itemId + "&faces-redirect=true";
-    }
 
     public void openLootBox(String userID){
         itemService.openLootBox(userID);
@@ -66,14 +62,6 @@ public class ItemCopyController implements Serializable {
         return itemService.getItem(id, true);
     }
 
-    public String makeCopy(String userId){
 
-        if (true){
-            copyService.newCopy(itemId, userId);
-            return "details?itemId=" + itemId + "&isCopied=true&faces-redirect=true";
-        } else {
-            return "details?itemId=" + itemId + "&isCopied=false&faces-redirect=true";
-        }
-    }
 
 }
