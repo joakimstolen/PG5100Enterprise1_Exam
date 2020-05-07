@@ -23,7 +23,6 @@
         <h:outputLabel>User last name: #{users.lastName}</h:outputLabel><br/>
 
 
-
         <sec:authenticated>
 
 
@@ -31,13 +30,21 @@
 
 
                 <h:column>
-                    <f:facet name="header">Open Lootbox</f:facet>
-                    <h:form prependId="false" id="detailsForm1">
-                        <h:commandButton value="Open Lootbox"
-                                         styleClass="btn btn-outline-info"
-                                         action="#{itemCopyController.openLootBox(users.userID)}"
-                                         id="detailsBtn_#{item.id}"/>
-                    </h:form>
+
+                    <c:choose>
+                        <c:when test="#{users.availableBoxes == 0}">
+                            <p>You are out of Lootboxes</p>
+                        </c:when>
+                        <c:otherwise>
+                            <f:facet name="header">Open Lootbox</f:facet>
+                            <h:form prependId="false" id="detailsForm1">
+                                <h:commandButton value="Open Lootbox"
+                                                 styleClass="btn btn-outline-info"
+                                                 action="#{itemCopyController.openLootBox(users.userID)}"
+                                                 id="detailsBtn_#{item.id}"/>
+                            </h:form>
+                        </c:otherwise>
+                    </c:choose>
                     <h:form prependId="false" id="detailsForm2">
                         <h:commandButton value="Purchase lootbox for 100"
                                          styleClass="btn btn-outline-info"
@@ -51,32 +58,32 @@
 
 
         <h:form>
-        <h:dataTable styleClass="table table-hover" value="#{users.lootBoxesList}"
-                     var="copy" border="1" id="itemTable">
-            <h:column>
-                <f:facet name="header">Name</f:facet>
-                <h:outputText value="#{copy.name}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Description</f:facet>
-                <h:outputText value="#{copy.description}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Type</f:facet>
-                <h:outputText value="#{copy.type}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Value</f:facet>
-                <h:outputText value="#{copy.price}"/>
-            </h:column>
-            <h:column>
-                <h:commandButton value="Mill Item"
-                                action="#{itemCopyController.sellLootBox(copy.id, users.userID)}"
-                                id="millBtn"/>
-            </h:column>
+            <h:dataTable styleClass="table table-hover" value="#{users.lootBoxesList}"
+                         var="copy" border="1" id="itemTable">
+                <h:column>
+                    <f:facet name="header">Name</f:facet>
+                    <h:outputText value="#{copy.name}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Description</f:facet>
+                    <h:outputText value="#{copy.description}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Type</f:facet>
+                    <h:outputText value="#{copy.type}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Value</f:facet>
+                    <h:outputText value="#{copy.price}"/>
+                </h:column>
+                <h:column>
+                    <h:commandButton value="Mill Item"
+                                     action="#{itemCopyController.sellLootBox(copy.id, users.userID)}"
+                                     id="millBtn"/>
+                </h:column>
 
 
-        </h:dataTable>
+            </h:dataTable>
 
         </h:form>
     </ui:define>
