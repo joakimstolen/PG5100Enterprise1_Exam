@@ -70,14 +70,14 @@ public class ItemService {
     public List<Item> getRandomItems(int amount, boolean withCopies){
         List<Item> items = new ArrayList<>(amount);
         while (items.size() < amount){
-            items.add(getRandomItem(withCopies));
+            items.add(getRandomItem());
         }
 
         return items;
     }
 
 
-    public Item getRandomItem(boolean withCopies){
+    public Item getRandomItem(){
 
         TypedQuery<Long> sizeQuery = entityManager.createQuery("SELECT COUNT(item) FROM Item item", Long.class);
         long size = sizeQuery.getSingleResult();
@@ -89,13 +89,28 @@ public class ItemService {
 
         Item item = query.getSingleResult();
 
-        if (withCopies){
-            Hibernate.initialize(item.getAllItemBuyers());
-        }
 
         return item;
 
     }
+
+
+    public void openLootBox(String userID) {
+        Users users = entityManager.find(Users.class, userID);
+        List<Item> items = users.getLootBoxesList();
+
+        if(users.getAvailableBoxes() >= 1) {
+            int newLootBoxCount = users.getAvailableBoxes() - 1;
+            users.setAvailableBoxes(newLootBoxCount);
+            for (int i = 0; i <= 2; i++) {
+                Item lootbox = getRandomItem();
+                items.add(lootbox);
+            }
+            users.setLootBoxesList(items);
+        }
+    }
+
+
 
 
     public Long sellLootBox(Long itemID, String userID) {
