@@ -1,5 +1,6 @@
 package com.example.exam.backend.service;
 
+import com.example.exam.backend.entity.Copy;
 import com.example.exam.backend.entity.Item;
 import com.example.exam.backend.entity.Users;
 import org.hibernate.Hibernate;
@@ -20,13 +21,16 @@ public class ItemService {
     @Autowired
     private EntityManager entityManager;
 
+    @Autowired
+    private CopyService copyService;
+
     public List<Item> getAllItems(boolean withBuyers){
         TypedQuery query = entityManager.createQuery("SELECT i FROM Item i ORDER BY i.price ASC", Item.class);
 
         List<Item> allItems = query.getResultList();
 
         if (withBuyers){
-            allItems.forEach(u -> u.getAllItemBuyers().size());
+            allItems.forEach(u -> u.getCardInfo().size());
         }
 
         return allItems;
@@ -60,21 +64,21 @@ public class ItemService {
         }
 
         if (withBuyers){
-            item.getAllItemBuyers().size();
+            item.getCardInfo().size();
         }
 
         return item;
     }
 
 
-    public List<Item> getRandomItems(int amount, boolean withCopies){
-        List<Item> items = new ArrayList<>(amount);
-        while (items.size() < amount){
-            items.add(getRandomItem());
-        }
-
-        return items;
-    }
+//    public List<Item> getRandomItems(int amount, boolean withCopies){
+//        List<Item> items = new ArrayList<>(amount);
+//        while (items.size() < amount){
+//            items.add(getRandomItem());
+//        }
+//
+//        return items;
+//    }
 
 
     public Item getRandomItem(){
@@ -95,18 +99,22 @@ public class ItemService {
     }
 
 
-    public void openLootBox(String userID) {
+    public boolean openLootBox(String userID) {
         Users users = entityManager.find(Users.class, userID);
-        List<Item> items = users.getLootBoxesList();
 
-        if(users.getAvailableBoxes() >= 1) {
-            int newLootBoxCount = users.getAvailableBoxes() - 1;
+        if(users.getAvailableBoxes() >= 1){
+            int newLootBoxCount = users.getAvailableBoxes();
+            newLootBoxCount--;
             users.setAvailableBoxes(newLootBoxCount);
-            for (int i = 0; i <= 2; i++) {
-                Item lootbox = getRandomItem();
-                items.add(lootbox);
-            }
-            users.setLootBoxesList(items);
+
+            copyService.newCopy(getRandomItem().getId(), userID);
+            copyService.newCopy(getRandomItem().getId(), userID);
+            copyService.newCopy(getRandomItem().getId(), userID);
+
+
+            return true;
+        } else {
+            throw new IllegalArgumentException("You are out of boxes");
         }
     }
 
@@ -116,10 +124,10 @@ public class ItemService {
     public Long sellLootBox(Long itemID, String userID) {
         Item item = entityManager.find(Item.class, itemID);
         Users users = entityManager.find(Users.class, userID);
-        List<Item> items = users.getLootBoxesList();
-        items.remove(item);
+        List<Copy> copy = users.getCopies();
+        copy.remove(itemID);
         users.setCurrency(users.getCurrency() + item.getPrice());
-        users.setLootBoxesList(items);
+        users.setCopies(copy);
 
         return itemID;
     }

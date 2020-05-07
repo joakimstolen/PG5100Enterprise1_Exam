@@ -42,8 +42,8 @@ public class Users {
     private Long currency;
 
 
-    @ManyToMany
-    private List<Item> lootBoxesList;
+    @OneToMany(mappedBy = "itemCopyOwner")
+    private List<Copy> copies;
 
 
     @NotNull
@@ -115,12 +115,12 @@ public class Users {
     }
 
 
-    public List<Item> getLootBoxesList() {
-        return lootBoxesList;
+    public List<Copy> getCopies() {
+        return copies;
     }
 
-    public void setLootBoxesList(List<Item> lootBoxesList) {
-        this.lootBoxesList = lootBoxesList;
+    public void setCopies(List<Copy> copies) {
+        this.copies = copies;
     }
 
     public Long getCurrency() {

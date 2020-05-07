@@ -40,9 +40,9 @@ public class ItemCopyController implements Serializable {
         return itemService.getAllItems(true).stream().limit(numberOfItems).collect(Collectors.toList());
     };
 
-    public List<Item> getRandomItems(int numberOfItems){
-        return itemService.getRandomItems(numberOfItems, true).stream().limit(numberOfItems).collect(Collectors.toList());
-    }
+//    public List<Item> getRandomItems(int numberOfItems){
+//        return itemService.getRandomItems(numberOfItems, true).stream().limit(numberOfItems).collect(Collectors.toList());
+//    }
 
 
     public void openLootBox(String userID){

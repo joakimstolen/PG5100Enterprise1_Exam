@@ -19,7 +19,6 @@
 
         <c:if test="#{empty param['query']}">
             <ui:param name="listOfItems" value="#{itemCopyController.getItems(20)}"/>
-            <ui:param name="listOfLootboxes" value="#{itemCopyController.getRandomItems(1)}"/>
             <ui:param name="errorText" value="No Items..."/>
         </c:if>
 

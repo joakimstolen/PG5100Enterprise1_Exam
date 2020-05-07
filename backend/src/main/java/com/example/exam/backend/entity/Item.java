@@ -3,10 +3,7 @@ package com.example.exam.backend.entity;
 
 import org.hibernate.validator.constraints.Range;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.List;
@@ -31,8 +28,8 @@ public class Item {
     @Range(min = 0, max = 3000)
     private Long price;
 
-    @ManyToMany(mappedBy = "lootBoxesList")
-    private List<Users> allItemBuyers;
+    @OneToMany(mappedBy = "itemInformation")
+    private List<Copy> cardInfo;
 
     public Long getId() {
         return id;
@@ -74,11 +71,12 @@ public class Item {
         this.price = price;
     }
 
-    public List<Users> getAllItemBuyers() {
-        return allItemBuyers;
+
+    public List<Copy> getCardInfo() {
+        return cardInfo;
     }
 
-    public void setAllItemBuyers(List<Users> allItemBuyers) {
-        this.allItemBuyers = allItemBuyers;
+    public void setCardInfo(List<Copy> cardInfo) {
+        this.cardInfo = cardInfo;
     }
 }

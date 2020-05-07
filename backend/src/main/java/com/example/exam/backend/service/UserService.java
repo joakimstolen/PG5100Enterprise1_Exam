@@ -50,7 +50,7 @@ public class UserService {
         if (users == null) {
             throw new IllegalStateException("No user with given userName");
         }
-        users.getLootBoxesList().size();
+        users.getCopies().size();
         return users;
     }
 

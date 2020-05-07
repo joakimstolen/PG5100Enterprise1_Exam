@@ -53,22 +53,18 @@ public class CopyService {
 //        users.setCurrency(currency-cost);
 
 
-        int updatedAvailableBoxes = users.getAvailableBoxes() -1;
-
-        if (updatedAvailableBoxes < 0){
-            return null;
-        }
-        users.setAvailableBoxes(updatedAvailableBoxes);
-
-
-
-
+//        int updatedAvailableBoxes = users.getAvailableBoxes() -1;
+//
+//        if (updatedAvailableBoxes < 0){
+//            return null;
+//        }
+//        users.setAvailableBoxes(updatedAvailableBoxes);
 
 
         Copy copy = new Copy();
-        copy.setPurchasedBy(users);
+        copy.setItemCopyOwner(users);
         copy.setItemInformation(item);
-        users.getLootBoxesList().add(item);
+        users.getCopies().add(copy);
         entityManager.persist(copy);
         return copy.getId();
     }
@@ -103,7 +99,7 @@ public class CopyService {
 
 
     public List<Copy> filterCopyByUser(String userId){
-        TypedQuery<Copy> query = entityManager.createQuery("SELECT c FROM Copy c WHERE c.purchasedBy.userID =?1", Copy.class);
+        TypedQuery<Copy> query = entityManager.createQuery("SELECT c FROM Copy c WHERE c.itemCopyOwner.userID =?1", Copy.class);
         query.setParameter(1, userId);
 
         return query.getResultList();

@@ -27,7 +27,7 @@ class DefaultDataInitializerServiceTest {
     public void testInit(){
         assertTrue(copyService.getAllCopies().size() > 0);
 
-        assertTrue(itemService.getAllItems(true).stream().mapToLong(i -> i.getAllItemBuyers().size()).sum() > 0);
+        assertTrue(itemService.getAllItems(true).stream().mapToLong(i -> i.getCardInfo().size()).sum() > 0);
 
         assertTrue(itemService.getAllItems(false).size() > 0);
     }

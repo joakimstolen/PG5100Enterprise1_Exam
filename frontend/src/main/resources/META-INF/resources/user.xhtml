@@ -17,7 +17,7 @@
 
     <ui:define name="content">
         <c:set var="users" value="#{userInfoController.user}"/>
-        <ui:param name="listOfLootboxes" value="#{itemCopyController.getRandomItems(1)}"/>
+
         <br/>
         <h:outputLabel id="userNameID">User name: #{users.userID}</h:outputLabel><br/>
         <h:outputLabel>User last name: #{users.lastName}</h:outputLabel><br/>
@@ -25,11 +25,6 @@
 
         <sec:authenticated>
 
-
-            <h:dataTable value="#{listOfLootboxes}" var="item" border="1" id="lootBoxTable">
-
-
-                <h:column>
 
                     <c:choose>
                         <c:when test="#{users.availableBoxes == 0}">
@@ -51,30 +46,29 @@
                                          action="#{userInfoController.buyLootBox(users.userID)}"
                                          id="detailsBtn1_#{item.id}"/>
                     </h:form>
-                </h:column>
 
-            </h:dataTable>
+
         </sec:authenticated>
 
 
         <h:form>
-            <h:dataTable styleClass="table table-hover" value="#{users.lootBoxesList}"
+            <h:dataTable styleClass="table table-hover" value="#{users.copies}"
                          var="copy" border="1" id="itemTable">
                 <h:column>
                     <f:facet name="header">Name</f:facet>
-                    <h:outputText value="#{copy.name}"/>
+                    <h:outputText value="#{copy.itemInformation.name}"/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">Description</f:facet>
-                    <h:outputText value="#{copy.description}"/>
+                    <h:outputText value="#{copy.itemInformation.description}"/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">Type</f:facet>
-                    <h:outputText value="#{copy.type}"/>
+                    <h:outputText value="#{copy.itemInformation.type}"/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">Value</f:facet>
-                    <h:outputText value="#{copy.price}"/>
+                    <h:outputText value="#{copy.itemInformation.price}"/>
                 </h:column>
                 <h:column>
                     <h:commandButton value="Mill Item"
