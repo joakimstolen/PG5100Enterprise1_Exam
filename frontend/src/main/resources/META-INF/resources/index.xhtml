@@ -35,12 +35,12 @@
             <c:otherwise>
 
                 <h:form prependId="false" styleClass="searchBox">
-                    <h:inputText id="queryInputID" styleClass="form-control m-2 p-2" value="#{searchController.query}"/>
-                    <h:selectOneMenu id="selectOneID" styleClass="form-control m-2 p-2" value="#{searchController.selection}">
+                    <h:inputText id="queryInputID" styleClass="form" value="#{searchController.query}"/>
+                    <h:selectOneMenu id="selectOneID" styleClass="form" value="#{searchController.selection}">
                         <f:selectItem itemValue="byPrice" itemLabel="Search by price"/>
                         <f:selectItem itemValue="byName" itemLabel="Search by name"/>
                     </h:selectOneMenu>
-                    <h:commandButton id="searchBtn" styleClass="btn-outline-primary form-control m-2 p-2" value="Submit" action="#{searchController.getSearchLink()}"/>
+                    <h:commandButton id="searchBtn" styleClass="btn" value="Submit" action="#{searchController.getSearchLink()}"/>
                 </h:form>
 
 

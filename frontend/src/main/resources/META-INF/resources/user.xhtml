@@ -34,7 +34,7 @@
                             <f:facet name="header">Open Lootbox</f:facet>
                             <h:form prependId="false" id="detailsForm1">
                                 <h:commandButton value="Open Lootbox"
-                                                 styleClass="btn btn-outline-info"
+                                                 styleClass="btn"
                                                  action="#{itemCopyController.openLootBox(users.userID)}"
                                                  id="openLootBtn"
                                                  />
@@ -43,7 +43,7 @@
                     </c:choose>
                     <h:form prependId="false" id="detailsForm2">
                         <h:commandButton value="Purchase lootbox for 100"
-                                         styleClass="btn btn-outline-info"
+                                         styleClass="btn"
                                          action="#{userInfoController.buyLootBox(users.userID)}"
                                          id="buyLootBtn"
                                          />
@@ -54,7 +54,7 @@
 
 
         <h:form>
-            <h:dataTable styleClass="table table-hover" value="#{users.copies}"
+            <h:dataTable styleClass="table" value="#{users.copies}"
                          var="copy" border="1" id="itemTable">
                 <h:column>
                     <f:facet name="header">Name</f:facet>

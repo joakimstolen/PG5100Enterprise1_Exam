@@ -82,6 +82,59 @@ public class DefaultDataInitializerService {
                 itemService.createItem("Grimer", "It eats sewer waste for food. Its body is very slippery so it can slip through almost any opening.", "Poison", 125L)
         );
 
+        Long seventhItem = attempt(() ->
+                itemService.createItem("Bulbasaur", "Reception to Bulbasaur has been largely positive and it often appears in top Pokémon lists", "Grass & Poison", 125L)
+        );
+
+        Long eigthItem = attempt(() ->
+                itemService.createItem("Caterpie", "To avoid predators, it releases an odor that makes bird Pokemon think twice about going after it.", "Bug", 205L)
+        );
+
+        Long ninethItem = attempt(() ->
+                itemService.createItem("Pidgey", "The common bird of Kanto, Pidgey is a bird that will go after bug Pokemon until it scurries away", "Flying", 180L)
+        );
+
+        Long tenthItem = attempt(() ->
+                itemService.createItem("Rattata", "Its teeth grow very long overtime, so it has to gnaw on logs, houses, telephone poles and more so it can be quite a pest at times", "Normal", 100L)
+        );
+
+        Long eleventhItem = attempt(() ->
+                itemService.createItem("Arbok", "The pattern on its chest is different everywhere. It is hard to escape from its coil because its muscles are so strong.", "Poison", 165L)
+        );
+
+        Long twelvthItem = attempt(() ->
+                itemService.createItem("Clefairy", "Originally proposed to be joint mascot of the Pokémon franchise alongside Pikachu, but was quickly overshadowed by the latter's popularity", "Fairy", 200L)
+        );
+
+        Long thirteenthItem = attempt(() ->
+                itemService.createItem("Psyduck", "When Psyduck's headache gets severe, it unleashes its psychic powers", "Water", 185L)
+        );
+
+        Long forteenthItem = attempt(() ->
+                itemService.createItem("Mankey", "Mankey specializes in physical fighting and is very aggressive and short-tempered", "Fighting", 225L)
+        );
+
+        Long fifteenthItem = attempt(() ->
+                itemService.createItem("Abra", "Even when its sleeping, which it does most of its life, it can sense danger. When it is in danger, it will teleport to safety", "Psychic", 195L)
+        );
+
+        Long sixteenthItem = attempt(() ->
+                itemService.createItem("Geodude", "Sometimes mistaken as ordinary rocks, people mistakenly step on them resulting in them getting hurt", "Rock", 150L)
+        );
+
+        Long eighteenthItem = attempt(() ->
+                itemService.createItem("Magnemite", "Strong magnetic field", "Electric", 125L)
+        );
+
+        Long nineteenthItem = attempt(() ->
+                itemService.createItem("Haunter", "Ghostly looking creature, that will haunt you", "Ghost", 125L)
+        );
+
+        Long twentyethItem = attempt(() ->
+                itemService.createItem("Cubone", "The stains on its skull are caused by the tears it sheds knowing it will never see its mother again.", "Ground", 150L)
+        );
+
+
 
         copyService.newCopy(firstItem, firstUser);
         copyService.newCopy(secondItem, firstUser);

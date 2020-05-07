@@ -15,10 +15,10 @@
     </title>
 </head>
 <body>
-<a id="homepageLinkId" href="index.jsf" class="btn  p-1 m-3 btn-outline-primary">Home page</a>
+<a id="homepageLinkId" href="index.jsf" class="btn">Home page</a>
 <sec:authenticated>
-    <a id="logoutBtn" class="btn  p-1 m-3 btn-outline-danger" href="/logout">Logout</a>
-    <h:outputLabel>Welcome: </h:outputLabel><h:link class="btn  p-1 m-3 btn-outline-success" id="userID" outcome="user"
+    <a id="logoutBtn" class="btn" href="/logout">Logout</a>
+    <h:outputLabel>Welcome: </h:outputLabel><h:link class="btn" id="userID" outcome="user"
                                                     value="#{userInfoController.userName}"/> <br/>
     <h:outputLabel>Currency: #{userInfoController.user.currency}</h:outputLabel>
     <br/>
@@ -27,8 +27,8 @@
 
 <sec:anonymous>
     <p class="alert alert-warning">You are not logged in!</p>
-    <a id="linkToLoginId" href="login.jsf" class="btn p-1 m-3 btn-outline-danger">Log In</a>
-    <a id="linkToSignupId" href="signup.jsf" class="btn  p-1 m-3 btn-outline-success">Sign Up</a>
+    <a id="linkToLoginId" href="login.jsf" class="btn ">Log In</a>
+    <a id="linkToSignupId" href="signup.jsf" class="btn">Sign Up</a>
 </sec:anonymous>
 
 <ui:insert name="content"/>

@@ -136,7 +136,7 @@ public class SeleniumLocalIT {
 
     @Test
     public void testDisplayHomePage(){
-        assertEquals(7, home.getNumberOfItemsDisplayed());
+        assertEquals(20, home.getNumberOfItemsDisplayed());
     }
 
 
