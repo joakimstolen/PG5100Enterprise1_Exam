@@ -22,12 +22,28 @@
             <ui:param name="errorText" value="No Items..."/>
         </c:if>
 
+        <c:if test="#{!empty param['query']}">
+            <ui:param name="listOfItems"
+                      value="#{itemCopyController.filterItemsBy(param['searchBy'], param['query'])}"/>
+            <ui:param name="errorText" value="No items meeting criteria"/>
+        </c:if>
 
         <c:choose>
             <c:when test="#{listOfItems.size() == 0}">
                 <h:outputLabel>#{errorText}</h:outputLabel>
             </c:when>
             <c:otherwise>
+
+                <h:form prependId="false" styleClass="searchBox">
+                    <h:inputText id="queryInputID" styleClass="form-control m-2 p-2" value="#{searchController.query}"/>
+                    <h:selectOneMenu id="selectOneID" styleClass="form-control m-2 p-2" value="#{searchController.selection}">
+                        <f:selectItem itemValue="byPrice" itemLabel="Search by price"/>
+                        <f:selectItem itemValue="byName" itemLabel="Search by name"/>
+                    </h:selectOneMenu>
+                    <h:commandButton id="searchBtn" styleClass="btn-outline-primary form-control m-2 p-2" value="Submit" action="#{searchController.getSearchLink()}"/>
+                </h:form>
+
+
                 <h:dataTable value="#{listOfItems}" var="item" border="1" id="itemTable">
                     <h:column>
                         <f:facet name="header">ID</f:facet>

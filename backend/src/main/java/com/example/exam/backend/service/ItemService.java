@@ -71,14 +71,6 @@ public class ItemService {
     }
 
 
-//    public List<Item> getRandomItems(int amount, boolean withCopies){
-//        List<Item> items = new ArrayList<>(amount);
-//        while (items.size() < amount){
-//            items.add(getRandomItem());
-//        }
-//
-//        return items;
-//    }
 
 
     public Item getRandomItem(){
@@ -107,9 +99,7 @@ public class ItemService {
             newLootBoxCount--;
             users.setAvailableBoxes(newLootBoxCount);
 
-
             copyService.newCopy(getRandomItem().getId(), userID);
-
 
 
             return true;
@@ -121,15 +111,12 @@ public class ItemService {
 
 
 
-    public Long sellLootBox(Long itemID, String userID) {
-        Item item = entityManager.find(Item.class, itemID);
-        Users users = entityManager.find(Users.class, userID);
-        List<Copy> copy = users.getCopies();
-        copy.remove(item);
-        users.setCurrency(users.getCurrency() + item.getPrice());
-        users.setCopies(copy);
+    public List<Item> filterByPrice(Long price){
+        TypedQuery<Item> query = entityManager.createQuery("SELECT i FROM Item i WHERE i.price =?1", Item.class);
 
-        return itemID;
+        query.setParameter(1, price);
+
+        return query.getResultList();
     }
 
 

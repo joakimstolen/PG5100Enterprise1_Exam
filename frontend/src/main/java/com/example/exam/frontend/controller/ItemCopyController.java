@@ -55,13 +55,21 @@ public class ItemCopyController implements Serializable {
         return "/user.xhtml?faces-redirect=true&successFull=true";
     }
 
-    public void sellLootBox(Long itemID, String userID) {
-        itemService.sellLootBox(itemID, userID);
-    }
-
 
     public Item getItem(Long id){
         return itemService.getItem(id, true);
+    }
+
+
+
+    public List<Item> filterItemsBy(String searchBy, String query) {
+        if (searchBy.equals("byPrice")) {
+            return itemService.filterByPrice(Long.valueOf(query));
+        } else if (searchBy.equals("byName")) {
+            return itemService.filterItemsByName(query);
+        } else {
+            return null;
+        }
     }
 
 
