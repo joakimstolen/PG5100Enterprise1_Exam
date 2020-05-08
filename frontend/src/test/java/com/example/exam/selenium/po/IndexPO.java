@@ -31,7 +31,7 @@ public class IndexPO extends LayoutPO {
     }
 
     public int getNumberOfItemsDisplayedUserPage() {
-        return getDriver().findElements(By.xpath("//*[@id=\"j_idt22:itemTable\"]")).size();
+        return getDriver().findElements(By.xpath("/html/body/form[3]/table/tbody/tr/td[0]")).size();
     }
 
 

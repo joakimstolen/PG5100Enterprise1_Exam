@@ -97,7 +97,7 @@ public class CopyService {
         Copy copyToRemove = entityManager.find(Copy.class, copyId);
 
         if (copyToRemove == null){
-            throw new IllegalArgumentException("No such pokemon found");
+            throw new IllegalArgumentException("No such item found");
         }
 
         entityManager.remove(copyToRemove);

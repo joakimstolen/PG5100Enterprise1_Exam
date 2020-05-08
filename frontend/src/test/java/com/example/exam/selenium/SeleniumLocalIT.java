@@ -151,9 +151,10 @@ public class SeleniumLocalIT {
         assertNotNull(userPO);
         assertTrue(userPO.getUserName().contains(userID));
 
-
-        assertEquals(0, home.getNumberOfItemsDisplayedUserPage());
         assertTrue(userPO.getDriver().getPageSource().contains("Available boxes: 3"));
+
+        //displays 1 because it is the header
+        assertEquals(0, home.getNumberOfItemsDisplayedUserPage());
 
     }
 
@@ -232,7 +233,7 @@ public class SeleniumLocalIT {
         userPO.clickAndWait("openLootBtn");
         assertTrue(userPO.getDriver().getPageSource().contains("Available boxes: 2"));
         assertTrue(userPO.getDriver().getPageSource().contains("Currency: 700"));
-        userPO.clickAndWait("j_idt20:itemTable:0:millBtn");
+        userPO.clickAndWait("j_idt22:itemTable:0:millBtn");
         assertEquals(2, home.getNumberOfItemsDisplayed());
 
     }
