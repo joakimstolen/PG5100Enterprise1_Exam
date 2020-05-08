@@ -56,7 +56,7 @@ public class CopyService {
             Copy copy = new Copy();
             copy.setItemCopyOwner(users);
             copy.setItemInformation(item);
-            copy.setDuplicates(0);
+            copy.setDuplicates(1);
             entityManager.persist(copy);
             return copy.getId();
         }
@@ -79,7 +79,7 @@ public class CopyService {
 
         //deleteCopy(copy.getId());
 
-        if (duplicates <= 0){
+        if (duplicates <= 1){
             deleteCopy(copy.getId());
 
         } else {

@@ -28,12 +28,9 @@ public class ItemCopyController implements Serializable {
     private CopyService copyService;
 
 
-
-
     public List<Item> getItems(int numberOfItems){
         return itemService.getAllItems(true).stream().limit(numberOfItems).collect(Collectors.toList());
-    };
-
+    }
 
 
     public String openLootBox(String userID){

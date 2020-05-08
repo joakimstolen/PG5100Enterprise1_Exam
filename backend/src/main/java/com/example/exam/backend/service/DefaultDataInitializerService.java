@@ -58,7 +58,7 @@ public class DefaultDataInitializerService {
 
         //Create som default items
         Long firstItem = attempt(() ->
-                itemService.createItem("Charmander", "Reception to Bulbasaur has been largely positive and it often appears in top Pokémon lists", "Grass & Poison", 150L)
+                itemService.createItem("Charmander", "Reception to Bulbasaur has been largely positive and it often appears in top Pokémon lists", "Grass & Poison", 80L)
         );
 
         Long secondItem = attempt(() ->
@@ -67,11 +67,11 @@ public class DefaultDataInitializerService {
 
 
         Long thirdItem = attempt(() ->
-                itemService.createItem("Oddish", "It buries itself in the soil to absorb the nutrients. the more water it drinks, the glossier it becomes.", "Grass & Poison", 150L)
+                itemService.createItem("Oddish", "It buries itself in the soil to absorb the nutrients. the more water it drinks, the glossier it becomes.", "Grass & Poison", 90L)
         );
 
         Long fourthItem = attempt(() ->
-                itemService.createItem("Squirtle", "Its English name is a portmanteau of squirt and turtle", "Water", 150L)
+                itemService.createItem("Squirtle", "Its English name is a portmanteau of squirt and turtle", "Water", 70L)
         );
 
         Long fifthItem = attempt(() ->
@@ -83,7 +83,7 @@ public class DefaultDataInitializerService {
         );
 
         Long seventhItem = attempt(() ->
-                itemService.createItem("Bulbasaur", "Reception to Bulbasaur has been largely positive and it often appears in top Pokémon lists", "Grass & Poison", 125L)
+                itemService.createItem("Bulbasaur", "Reception to Bulbasaur has been largely positive and it often appears in top Pokémon lists", "Grass & Poison", 55L)
         );
 
         Long eigthItem = attempt(() ->
@@ -91,7 +91,7 @@ public class DefaultDataInitializerService {
         );
 
         Long ninethItem = attempt(() ->
-                itemService.createItem("Pidgey", "The common bird of Kanto, Pidgey is a bird that will go after bug Pokemon until it scurries away", "Flying", 180L)
+                itemService.createItem("Pidgey", "The common bird of Kanto, Pidgey is a bird that will go after bug Pokemon until it scurries away", "Flying", 80L)
         );
 
         Long tenthItem = attempt(() ->
@@ -99,7 +99,7 @@ public class DefaultDataInitializerService {
         );
 
         Long eleventhItem = attempt(() ->
-                itemService.createItem("Arbok", "The pattern on its chest is different everywhere. It is hard to escape from its coil because its muscles are so strong.", "Poison", 165L)
+                itemService.createItem("Arbok", "The pattern on its chest is different everywhere. It is hard to escape from its coil because its muscles are so strong.", "Poison", 90L)
         );
 
         Long twelvthItem = attempt(() ->
@@ -123,7 +123,7 @@ public class DefaultDataInitializerService {
         );
 
         Long eighteenthItem = attempt(() ->
-                itemService.createItem("Magnemite", "Strong magnetic field", "Electric", 125L)
+                itemService.createItem("Magnemite", "Strong magnetic field", "Electric", 105L)
         );
 
         Long nineteenthItem = attempt(() ->
