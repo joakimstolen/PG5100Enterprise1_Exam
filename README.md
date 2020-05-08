@@ -1,14 +1,14 @@
 # README for PG5100 Enterprise Programming 1
 
 ### How to run
-1. Install Maven dependencies: `mvn install`
-2. Run all tests `mvn clean verify`
+1. Install Maven dependencies and run tests: `mvn install`
+2. Run all tests and get coverage-report in report module `mvn clean verify`
 3. To launch app: go to frontend module and run LocalApplicationRunner
 4. Visit `localhost:8080`
 
 
 ###Notes
-This website lets a user signup and play a game of Gacha. When a user is signed up s/he is given 3 free lootboxes and 700 "coins". If a user is not logged in/signed up they will have the ability to see the complete list of items they can get through the Gacha game. They also get the ability to search for a given name or a given price. When a user is signed up they can go to their user page and see their currency and their available lootboxes. They get the option to open a lootbox or purchase a lootbox. If they purchase a lootbox a new lootbox is added to their available lootboxes and 100 coins are withdrawn from their currency. If they open one of the lootboxes they obtained through signing up or purchasing, they will get 1 new item that will get stored in a list on the same page. If they get a duplicate item it will stack, and they can easily seehow many of each item they have. You can also at any time mill an item and get the value of the item added to your currency.  
+This website lets a user signup and play a game of Gacha. When a user is signed up s/he is given 3 free lootboxes and 700 "coins". If a user is not logged in/signed up they will have the ability to see the complete list of items they can get through the Gacha game. They also get the ability to search for a given name or a given price. When a user is signed up they can go to their user page and see their currency and their available lootboxes. They get the option to open a lootbox or purchase a lootbox. If they purchase a lootbox a new lootbox is added to their available lootboxes and 100 coins are withdrawn from their currency. If they open one of the lootboxes they obtained through signing up or purchasing, they will get 1 new item that will get stored in a list on the same page. If they get a duplicate item it will stack, and they can easily see how many of each item they have. You can also at any time mill an item and get the value of the item added to your currency.  
 
 ### Coverage
 All test do run.
@@ -57,6 +57,9 @@ All test do run.
 ###Extra
 - Added a searchfield where a user can search through all items by name or by value
 - Added a check if password is set blank when signing up
+
+###Links
+- I used this link when trying to figure out how to iterate when counting amount of each item https://stackoverflow.com/questions/18410035/ways-to-iterate-over-a-list-in-java
 
 ###Possible bugs
 - if you give wrong input (text) in searchfield when searching for price an error will occur                                                                                  

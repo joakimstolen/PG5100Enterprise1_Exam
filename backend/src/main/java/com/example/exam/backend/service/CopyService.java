@@ -45,6 +45,7 @@ public class CopyService {
         }
 
 
+        //this code is inspired by code provided by link above
         List<Copy> copyList = users.getCopies();
         boolean duplicate = false;
         for (ListIterator<Copy> iterator = copyList.listIterator(); iterator.hasNext();){
