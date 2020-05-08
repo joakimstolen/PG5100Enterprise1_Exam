@@ -25,7 +25,7 @@ All test do run.
 - [x] redeem lootbox with obtained lootbox
 - [x] buy lootbox for currency
 - [x] mill copy of item for currency
-- [x] Using flyway to initialize
+- [x] Using flyway to initialize H2 database
 
 ###R2:
 - [x] Write integration tests for each of the @Service classes using JUnit and @SpringBootTest annotation
@@ -57,4 +57,6 @@ All test do run.
 ###Extra
 - Added a searchfield where a user can search through all items by name or by value
 - Added a check if password is set blank when signing up
-                                                                                                    
+
+###Possible bugs
+- if you give wrong input (text) in searchfield when searching for price an error will occur                                                                                  
