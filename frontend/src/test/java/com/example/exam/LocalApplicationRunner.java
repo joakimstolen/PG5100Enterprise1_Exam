@@ -11,7 +11,4 @@ public class LocalApplicationRunner {
         SpringApplication.run(Application.class, "--spring.profiles.active=test");
     }
 
-
-
-
 }
